@@ -3,8 +3,8 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
   async find(uid) {
-    const user = await app.mysql.get('house').query('select * from tb_userinfo where id = ?', uid);
-    return user;
+    const user = await this.app.mysql.get('tb_userinfo', { id: uid });
+    return { user };
   }
 }
 
