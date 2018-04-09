@@ -30,7 +30,7 @@ class UserController extends Controller {
       }
     }
 
-    const result =  await this.ctx.service.user.update(row,options);
+    const result  = await this.ctx.service.user.update(row,options);
     this.ctx.body = result;
   }
 }
