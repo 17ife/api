@@ -31,3 +31,12 @@ $ npm stop
 
 
 [egg]: https://eggjs.org
+
+
+### logs
+
+- add mysql plugin 
+
+### plan
+
+- add mysql connection, curd opperations
