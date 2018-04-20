@@ -1,4 +1,5 @@
 const Controller = require('egg').Controller;
+
 class UserController extends Controller {
   async info() {
     const userId = this.ctx.params.id;
