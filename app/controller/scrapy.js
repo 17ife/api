@@ -13,7 +13,6 @@ class ScrapyController extends Controller{
       price : this.ctx.request.body.price,
       shipping : this.ctx.request.body.shipping
     }
-    console.log(entity);
     this.ctx.body = await this.ctx.service.scrapy.addDealNews(entity);
   }
   async crsf(){

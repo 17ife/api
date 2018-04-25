@@ -6,6 +6,9 @@ class HomeController extends Controller {
   async index() {
     this.ctx.body = 'hi, egg';
   }
+  async testGet(){
+    this.ctx.body = 'hello,get';
+  }
 }
 
 module.exports = HomeController;

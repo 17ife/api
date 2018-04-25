@@ -6,6 +6,7 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
+  router.get('/testGet',controller.home.testGet);
   router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   router.post('/csrf',app.controller.scrapy.crsf);
   //CURD
