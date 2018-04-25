@@ -1,11 +1,12 @@
 'use strict';
 
-const Service = require('egg').Service;
-
-class BaseService extends Service {
+class MysqlService  {
+	constructor(mysql){
+		this.mysql = mysql
+	}
 	async create(table,entity){
 		try {
-			const result = await this.app.mysql.insert(table,entity);
+			const result = await this.mysql.insert(table,entity);
 			return { result };
 		}
 		catch(e) {
@@ -15,7 +16,7 @@ class BaseService extends Service {
 
 	async findAll(table){
 		try {
-			const list = await this.app.mysql.select(table);
+			const list = await this.mysql.select(table);
 			return { list };
 		}
 		catch(e){
@@ -25,7 +26,7 @@ class BaseService extends Service {
 
 	async findOne(table,options){
 		try {
-			const entity = await this.app.mysql.select(table,options);
+			const entity = await this.mysql.select(table,options);
 			return { entity };
 		}
 		catch(e){
@@ -35,7 +36,7 @@ class BaseService extends Service {
 
 	async update(table,row,options){
 		try{
-      const result = await this.app.mysql.update(table, row, options);
+      const result = await this.mysql.update(table, row, options);
       return result;
     }catch(e){
       return { e };
@@ -44,7 +45,7 @@ class BaseService extends Service {
 
 	async execute(sql){
 		try{
-			const result = await this.app.mysql.query(sql);
+			const result = await this.mysql.query(sql);
 			return result;
 		}catch(e){
 			return { e }
@@ -52,4 +53,4 @@ class BaseService extends Service {
 	}
 }
 
-module.exports = BaseService;
+module.exports = MysqlService;

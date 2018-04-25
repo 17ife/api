@@ -1,14 +1,14 @@
 'use strict';
+const Service = require('egg').Service;
 
-const BaseService = require('./base');
-
-class ScrapyService extends BaseService {
-  constructor(){
-    super();
-  } 
-  
+class ScrapyService extends Service {
   async addDealNews(entity){
-    return this.create('M_dealnews',entity);
+    try{
+      const result = await this.app.mysql.insert('M_dealnews',entity);
+      return result;
+    }catch(e){
+      return { e };
+    }
   }
 }
 

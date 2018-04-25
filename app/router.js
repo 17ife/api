@@ -6,7 +6,8 @@
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
-  router.get('/scrapy/dealnews/add',app.controller.scrapy.create);
+  router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
+  router.post('/csrf',app.controller.scrapy.crsf);
   //CURD
   // router.get('/user/add',app.controller.user.create);
   // router.get('/user/all',app.controller.user.all);
