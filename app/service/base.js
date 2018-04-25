@@ -1,6 +1,6 @@
 'use strict';
 
-const Server = require('egg').Service;
+const Service = require('egg').Service;
 
 class BaseService extends Service {
 	async create(table,entity){
