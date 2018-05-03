@@ -7,8 +7,10 @@ module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
   router.get('/testGet',controller.home.testGet);
-  router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
-  router.post('/csrf',app.controller.scrapy.crsf);
+  router.get('/tags',controller.tags.findAll);
+  // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
+  // router.post('/csrf',app.controller.scrapy.crsf);
+
   //CURD
   // router.get('/user/add',app.controller.user.create);
   // router.get('/user/all',app.controller.user.all);

@@ -7,30 +7,30 @@ class MysqlService  {
 	async create(table,entity){
 		try {
 			const result = await this.mysql.insert(table,entity);
-			return { result };
+			return result;
 		}
 		catch(e) {
-			return { e }
+			return e 
 		}
 	}
 
 	async findAll(table){
 		try {
 			const list = await this.mysql.select(table);
-			return { list };
+			return list;
 		}
 		catch(e){
-			return { e }
+			return e 
 		}
 	}
 
 	async findOne(table,options){
 		try {
 			const entity = await this.mysql.select(table,options);
-			return { entity };
+			return entity;
 		}
 		catch(e){
-			return { e }
+			return e 
 		}
 	}
 
@@ -48,7 +48,7 @@ class MysqlService  {
 			const result = await this.mysql.query(sql);
 			return result;
 		}catch(e){
-			return { e }
+			return e
 		}
 	}
 }
