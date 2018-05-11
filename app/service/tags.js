@@ -6,7 +6,7 @@ class TagService extends Service {
   async findAll(){
     let   db    = await new DB(this.app.mysql);
     const list  = await db.findAll('D_tags');
-    return list ;
+    return { success:true , msg:"" , data : list } ;
   }
 }
 
