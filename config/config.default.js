@@ -42,6 +42,20 @@ module.exports = appInfo => {
     // allowMethods:"GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS",
     credentials: true
   };
+  // 文件上传大小
+  exports.multipart = {
+    fileSize: '50mb',
+    whitelist: [
+      // image
+      '.jpg', '.jpeg', '.png', '.gif', '.bmp', '.wbmp','.webp','.tif','.psd',
+      // text
+      '.svg','.js', '.jsx','.json','.css', '.less','.html', '.htm','.xml',
+      // tar
+      '.zip','.gz', '.tgz', '.gzip',
+      // video
+      '.mp3','.mp4','.avi',
+    ],
+  };
 
   return config;
 };
