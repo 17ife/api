@@ -1,24 +1,32 @@
-const path = require('path');
-const sendToWormhole = require('stream-wormhole');
-const Controller = require('egg').Controller;
+'use strict';
+const path             = require('path');
+const sendToWormhole   = require('stream-wormhole');
+const Controller       = require('egg').Controller;
+const FileService      = require('../base/files');
+const ToolService      = require('../base/tools');
+const Fsrv             = new FileService();
+const Tool             = new ToolService();
 
-module.exports = class UploadController extends Controller {
+class UploadController extends Controller {
   async uploadSingleFileToServer() {
     const ctx = this.ctx;
     const stream = await ctx.getFileStream();
     const filePath = "/home/files/" + path.basename(stream.filename);
-    let msg = "";
 
     try {
-      
+      let r = await Fsrv.writeData(filePath,stream);
     } catch (err) {
-      // must consume the stream, otherwise browser will be stuck.
       await sendToWormhole(stream);
       throw err;
     }
- 
-    ctx.body = {
-      
-    };
+    
+    if(r){
+      ctx.body = r
+    }else{
+      ctx.body = Tool.formatReturnValue(false,err,null);
+    }
+    
   }
 }
+
+module.exports = UploadController;
