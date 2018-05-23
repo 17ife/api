@@ -8,6 +8,7 @@ module.exports = app => {
   router.get('/', controller.home.index);
   router.get('/testGet',controller.home.testGet);
   router.get('/tags',controller.tags.findAll);
+  router.get('/commodities',controller.tags.findAll);
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
 
