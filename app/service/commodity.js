@@ -11,3 +11,5 @@ class CommodityService extends Service {
     return Tool.formatReturnValue(true,"OK",list);
   }
 }
+
+module.exports = CommodityService;
