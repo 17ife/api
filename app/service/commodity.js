@@ -10,6 +10,12 @@ class CommodityService extends Service {
     const list  = await db.findAll('B_commodity');
     return Tool.formatReturnValue(true,"OK",list);
   }
+
+  async findByTagID(tagID){
+    let   db    = await new DB(this.app.mysql);
+    const list  = await db.findOne('B_commodity',{ where : { tag : tagID } });
+    return Tool.formatReturnValue(true,"OK",list);
+  }
 }
 
 module.exports = CommodityService;
