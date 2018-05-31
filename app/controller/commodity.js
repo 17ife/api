@@ -16,9 +16,7 @@ class CommodityController extends Controller {
   }
 
   async findByTag(tagID) {
-    // console.log(tagID);
     const commodityList   = await this.ctx.service.commodity.findByTagID(tagID);
-    // console.log(commodityList);
     return commodityList;
   }
 }
