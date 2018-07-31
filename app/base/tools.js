@@ -1,5 +1,6 @@
 'use strict';
 const uuidv4 = require("uuid/v4");
+var exec     = require('child_process').exec; 
 
 class ToolService {
   constructor(){}
