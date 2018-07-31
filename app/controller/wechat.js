@@ -1,4 +1,6 @@
-const Controller = require('egg').Controller;
+const Controller   = require('egg').Controller;
+const ToolService  = require('../base/tools');
+const Tool         = new ToolService();
 
 class WechatController extends Controller {
   async customService(){
@@ -12,7 +14,14 @@ class WechatController extends Controller {
       nonce         : this.ctx.request.body.nonce,
       echostr       : this.ctx.request.body.echostr,
     };
-    this.ctx.body = params;
+    
+    Tool.exescript("cmdstr",function(err,data){
+      this.ctx.body = {
+        "params" : params,
+        "data"   : data
+      };
+    })  
+    
   }
 }
 
