@@ -17,7 +17,13 @@ class WechatController extends Controller {
     };
     const cmdStr  = "python /home/api/extends/wechatCypt/crypt.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.echostr 
     Tool.exescript(cmdStr,function(err,data){
-      self.ctx.body = data;
+      if(err){
+        self.ctx.body = err;
+      }
+      else{
+        self.ctx.body = data;
+      }
+      
     })  
     
   }
