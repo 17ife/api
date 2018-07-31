@@ -19,9 +19,9 @@ class WechatController extends Controller {
     
     Tool.exescript(cmdStr,function(err,data){
       
-      console.log("-----------------");
+      console.log("--------err---------");
       console.log(err);
-      console.log("-----------------");
+      console.log("--------data---------");
       console.log(data);
 
       if(err){
