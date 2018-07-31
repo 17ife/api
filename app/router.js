@@ -10,8 +10,7 @@ module.exports = app => {
   router.get('/tags',controller.tags.findAll);
   router.get('/commodities',controller.commodity.find);
   router.get('/wechat',controller.wechat.customService);
-
-  router.post('/', controller.wechat.signature);
+  router.get('/signature', controller.wechat.signature);
 
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
