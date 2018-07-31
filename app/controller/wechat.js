@@ -10,12 +10,13 @@ class WechatController extends Controller {
   async signature(){
     const self    = this;
     const params  = {
-      msg_signature : this.ctx.request.body.msg_signature,
-      timestamp     : this.ctx.request.body.timestamp,
-      nonce         : this.ctx.request.body.nonce,
-      echostr       : this.ctx.request.body.echostr,
+      msg_signature : this.ctx.queries.msg_signature,
+      timestamp     : this.ctx.queries.timestamp,
+      nonce         : this.ctx.queries.nonce,
+      echostr       : this.ctx.queries.echostr,
     };
     const cmdStr  = "python /home/api/extends/wechatCypt/crypt.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.echostr 
+    
     Tool.exescript(cmdStr,function(err,data){
       
       console.log("-----------------");
