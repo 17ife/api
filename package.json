@@ -11,6 +11,8 @@
     "egg-scripts": "^2.5.0",
     "egg-session": "^3.1.0",
     "formstream": "^1.1.0",
+    "request": "^2.87.0",
+    "request-promise": "^4.2.2",
     "stream-wormhole": "^1.0.3",
     "uuid": "^3.2.1"
   },
