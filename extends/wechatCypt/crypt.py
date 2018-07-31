@@ -5,8 +5,8 @@ import xml.etree.cElementTree as ET
 import sys
 
 if __name__ == "__main__":  
-    sToken              = "gYzYXxHTUv3rG0rL"
-    sEncodingAESKey     = "ScVhT2ipvwACdi25VMTpqiesPoeJdtJvv6q2o1txtyo"
+    sToken              = "wYA10XSUEzL1EQmdCyXFd9hzGNsM"
+    sEncodingAESKey     = "iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY"
     sCorpID             = "wweeb673ca4f4dda8c"
     wxcpt               = WXBizMsgCrypt(sToken,sEncodingAESKey,sCorpID)
     sVerifyMsgSig       = sys.argv[1]
