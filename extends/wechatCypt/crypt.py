@@ -16,7 +16,7 @@ if __name__ == "__main__":
     ret,sEchoStr        = wxcpt.VerifyURL(sVerifyMsgSig, sVerifyTimeStamp,sVerifyNonce,sVerifyEchoStr)
     if(ret!=0):
         # print "ERR: VerifyURL ret: " + str(ret)
-        sys.stderr(sEchoStr)
+        sys.stderr(ret)
         sys.exit(1)
 
     sys.stdout(sEchoStr)
