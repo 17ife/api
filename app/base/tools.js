@@ -15,7 +15,7 @@ class ToolService {
 
   exescript(cmdstr,cb) {
     // cb(null,cmdstr);
-    exec(cmdStr , function(err,stdOut,stdErr){
+    exec(cmdstr , function(err,stdOut,stdErr){
       if(err){
         console.log(err);
       }
