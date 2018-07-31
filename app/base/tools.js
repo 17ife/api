@@ -13,13 +13,13 @@ class ToolService {
   }
 
   exescript(cmdstr,cb) {
-    cb(null,cmdstr);
-    // exec(cmdStr , function(err,stdOut,stdErr){
-    //   if(err){
-    //     console.log(err);
-    //   }
-    //   cb(stdErr,stdOut);
-    // });
+    // cb(null,cmdstr);
+    exec(cmdStr , function(err,stdOut,stdErr){
+      if(err){
+        console.log(err);
+      }
+      cb(stdErr,stdOut);
+    });
   }
 
   doLog() {}

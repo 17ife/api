@@ -15,11 +15,9 @@ class WechatController extends Controller {
       nonce         : this.ctx.request.body.nonce,
       echostr       : this.ctx.request.body.echostr,
     };
-    Tool.exescript("cmdstr",function(err,data){
-      self.ctx.body = {
-        "params" : params,
-        "data"   : data
-      };
+    const cmdStr  = "python /home/api/extends/wechatCypt/crypt.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.echostr 
+    Tool.exescript(cmdStr,function(err,data){
+      self.ctx.body = data;
     })  
     
   }
