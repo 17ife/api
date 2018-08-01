@@ -17,18 +17,17 @@ class WechatController extends Controller {
     };
     const cmdStr  = "python /home/api/extends/wechatCypt/crypt.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.echostr 
     
-    Tool.exescript(cmdStr,function(err,data){
-      console.log("call")
-      console.log("--------err---------");
-      console.log(err);
-      console.log("--------data---------");
-      console.log("data"+data);
-
+    Tool.exescript(cmdStr,function(err,stdOut,stdErr){
+      console.log("callback");
+      console.log(stdOut);
+      console.log("====stdOut====");
+      console.log(stdErr);
+      console.log("====stdErr====");
       if(err){
         self.ctx.body = err;
       }
       else{
-        self.ctx.body = data;
+        self.ctx.body = stdOut;
       }
       console.log("done");
     })  
