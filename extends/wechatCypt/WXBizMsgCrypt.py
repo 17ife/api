@@ -224,7 +224,9 @@ class WXBizMsgCrypt(object):
          #@return：成功0，失败返回对应的错误码	
 
     def VerifyURL(self, sMsgSignature, sTimeStamp, sNonce, sEchoStr):
+        print "verify"
         sha1 = SHA1()
+        print "verify done"
         ret,signature = sha1.getSHA1(self.m_sToken, sTimeStamp, sNonce, sEchoStr)
         if ret  != 0:
             return ret, None 
