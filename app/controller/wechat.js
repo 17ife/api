@@ -22,7 +22,7 @@ class WechatController extends Controller {
       console.log("--------err---------");
       console.log(err);
       console.log("--------data---------");
-      console.log(data);
+      console.log("data"+data);
 
       if(err){
         self.ctx.body = err;
@@ -30,7 +30,7 @@ class WechatController extends Controller {
       else{
         self.ctx.body = data;
       }
-      
+      console.log("done");
     })  
     
   }
