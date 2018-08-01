@@ -19,7 +19,7 @@ if __name__ == "__main__":
         sys.stderr.write(ret)
         sys.exit(1)
 
-    sys.stdout.write(sEchoStr)
+    sys.stdout.write(str(sEchoStr))
     sys.exit(0)
     # print sEchoStr
     # return sEchoStr
