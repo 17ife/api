@@ -13,14 +13,16 @@ class ToolService {
     return uuidv4();
   }
 
-  exescript(cmdstr,cb) {
+  exescript(cmdstr , cb) {
     exec(cmdstr , function(err,stdOut,stdErr){
       console.log(err);
       console.log(stdOut);
       console.log(stdErr);
+      console.log("111111")
       if(err){
         console.log(err);
       }
+      console.log("222222")
       cb(stdErr,stdOut);
     });
   }
