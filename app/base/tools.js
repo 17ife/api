@@ -4,6 +4,7 @@ const util   = require('util');
 const exec   = util.promisify(require('child_process').exec);
 
 class ToolService {
+  
   constructor(){}
 
   formatReturnValue(success,msg,data) {
@@ -13,7 +14,7 @@ class ToolService {
   generateUid() {
     return uuidv4();
   }
-  
+
   async exescript(cmdstr) {
     const { stdout, stderr } = await exec(cmdstr);
     return  { "stdout" :  stdout , "stderr" : stderr }

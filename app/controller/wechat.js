@@ -14,10 +14,8 @@ class WechatController extends Controller {
       nonce         : this.ctx.queries.nonce,
       echostr       : this.ctx.queries.echostr,
     };
-    const cmdStr  = "python /home/api/extends/wechatCypt/crypt.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.echostr 
-    
-    let result = await Tool.exescript(cmdStr);
-    
+    const cmdStr  = "python /home/api/extends/wechatCypt/crypt.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.echostr ;
+    let result    = await Tool.exescript(cmdStr);
     this.ctx.body = result.stdout;
   }
 }
