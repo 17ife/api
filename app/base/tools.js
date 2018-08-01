@@ -1,6 +1,7 @@
 'use strict';
 const uuidv4 = require("uuid/v4");
-var exec     = require('child_process').exec; 
+const util   = require('util');
+const exec   = util.promisify(require('child_process').exec);
 
 class ToolService {
   constructor(){}
@@ -12,14 +13,10 @@ class ToolService {
   generateUid() {
     return uuidv4();
   }
-
-  exescript(cmdstr , cb) {
-    exec(cmdstr , function(err,stdOut,stdErr){
-      if(err){
-        console.log(err);
-      }
-      cb(err,stdOut,stdErr);
-    });
+  
+  async exescript(cmdstr) {
+    const { stdout, stderr } = await exec(cmdstr);
+    return  { "stdout" :  stdout , "stderr" : stderr }
   }
 
   doLog() {}

@@ -8,7 +8,6 @@ class WechatController extends Controller {
   }
 
   async signature(){
-    let self      = this;
     const params  = {
       msg_signature : this.ctx.queries.msg_signature,
       timestamp     : this.ctx.queries.timestamp,
@@ -17,21 +16,9 @@ class WechatController extends Controller {
     };
     const cmdStr  = "python /home/api/extends/wechatCypt/crypt.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.echostr 
     
-    Tool.exescript(cmdStr,function(err,stdOut,stdErr){
-      console.log("callback");
-      console.log(stdOut);
-      console.log("====stdOut====");
-      console.log(stdErr);
-      console.log("====stdErr====");
-      if(err){
-        self.ctx.body = err;
-      }
-      else{
-        self.ctx.body = stdOut;
-      }
-      console.log("done");
-    })  
+    let result = await Tool.exescript(cmdStr);
     
+    this.ctx.body = result.stdout;
   }
 }
 
