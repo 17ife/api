@@ -44,10 +44,10 @@ class SHA1:
         @param nonce: 随机字符串
         @return: 安全签名
         """
-        print token
-        print timestamp
-        print nonce
-        print encrypt
+        # print token
+        # print timestamp
+        # print nonce
+        # print encrypt
         try:
             sortlist = [token, timestamp, nonce, encrypt]
             sortlist.sort()
@@ -55,7 +55,7 @@ class SHA1:
             sha.update("".join(sortlist))
             return  ierror.WXBizMsgCrypt_OK, sha.hexdigest()
         except Exception,e:
-            print "signatrue failed!!!"
+            # print "signatrue failed!!!"
             print e
             return  ierror.WXBizMsgCrypt_ComputeSignature_Error, None
   
@@ -224,9 +224,9 @@ class WXBizMsgCrypt(object):
          #@return：成功0，失败返回对应的错误码	
 
     def VerifyURL(self, sMsgSignature, sTimeStamp, sNonce, sEchoStr):
-        print "verify"
+        # print "verify"
         sha1 = SHA1()
-        print "verify done"
+        # print "verify done"
         ret,signature = sha1.getSHA1(self.m_sToken, sTimeStamp, sNonce, sEchoStr)
         if ret  != 0:
             return ret, None 
