@@ -8,7 +8,7 @@ class WechatController extends Controller {
   }
 
   async signature(){
-    const self    = this;
+    let self      = this;
     const params  = {
       msg_signature : this.ctx.queries.msg_signature,
       timestamp     : this.ctx.queries.timestamp,
