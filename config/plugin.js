@@ -10,6 +10,6 @@ exports.mysql = {
 exports.cors = {
   enable: true,
   package: 'egg-cors',
-}
+};
 
-exports.session = true;
+// exports.session = true;

@@ -9,6 +9,10 @@ module.exports = appInfo => {
   // add your config here
   config.middleware = [ 'xmlparser' ];
 
+  config.bodyParser = {
+    enable: true,
+  },
+
   config.mysql = {
     // 单数据库信息配置
     client:{
