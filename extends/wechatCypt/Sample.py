@@ -57,8 +57,10 @@ if __name__ == "__main__":
    <AgentID><![CDATA[218]]></AgentID>
    </xml>
 
-   企业收到post请求之后应该 1.解析出url上的参数，包括消息体签名(msg_signature)，时间戳(timestamp)以及随机数字串(nonce)
-   2.验证消息体签名的正确性。 3.将post请求的数据进行xml解析，并将<Encrypt>标签的内容进行解密，解密出来的明文即是用户回复消息的明文，明文格式请参考官方文档
+   企业收到post请求之后应该 
+   1.解析出url上的参数，包括消息体签名(msg_signature)，时间戳(timestamp)以及随机数字串(nonce)
+   2.验证消息体签名的正确性。 
+   3.将post请求的数据进行xml解析，并将<Encrypt>标签的内容进行解密，解密出来的明文即是用户回复消息的明文，明文格式请参考官方文档
    第2，3步可以用企业微信提供的库函数DecryptMsg来实现。
    '''
    # sReqMsgSig = HttpUtils.ParseUrl("msg_signature")
