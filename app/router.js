@@ -3,6 +3,14 @@
 /**
  * @param {Egg.Application} app - egg application
  */
+
+
+const wechat = app.middlewares.wechat({
+  token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
+  appid: 'wweeb673ca4f4dda8c',
+  encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
+});
+
 module.exports = app => {
   const { router, controller } = app;
   router.get('/', controller.home.index);
@@ -13,7 +21,7 @@ module.exports = app => {
   router.get('/signature', controller.wechat.signature);
   router.post('/signature', controller.wechat.getMsg);
 
-  router.all("/chat",controller.chat);
+  router.all("/chat",wechat);
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
 
