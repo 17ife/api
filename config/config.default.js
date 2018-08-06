@@ -8,7 +8,7 @@ module.exports = appInfo => {
 
   // add your config here
   config.middleware = [
-    'chat'
+    // 'chat'
   ];
 
   config.mysql = {

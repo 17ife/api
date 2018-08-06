@@ -1,6 +1,7 @@
 const Controller   = require('egg').Controller;
 const ToolService  = require('../base/tools');
 const Tool         = new ToolService();
+const xml2js       = require('xml2js').parseString;
 
 class WechatController extends Controller {
 
@@ -24,15 +25,19 @@ class WechatController extends Controller {
       data              : this.ctx.request.body.Encrypt,
     };
 
-    console.log("==== get MSG ====");
-
-    console.dir(params);
-
-    const stream = await this.ctx.getFileStream();
-
-    console.log(stream);
-
-    this.ctx.body  = "ok";
+    let data = '';
+    let json = {};
+    this.ctx.req.setEncoding('utf8');
+    this.ctx.req.on('data',function(chunk){
+      data += chunk;
+    });
+    let that = this;
+    this.ctx.req.on('end',function(){
+      xml2js(data,{explicitArray:false}, function (err, json) {
+        console.log(json);//这里的json便是xml转为json的内容
+        that.ctx.body = 'success';
+      });
+    });
   }
 }
 
