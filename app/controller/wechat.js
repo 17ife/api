@@ -18,6 +18,21 @@ class WechatController extends Controller {
     let result    = await Tool.exescript(cmdStr);
     this.ctx.body = result.stdout;
   }
+
+  async getMsg(){
+    const params  = {
+      msg_signature     : this.ctx.body.msg_signature,
+      timestamp         : this.ctx.body.timestamp,
+      nonce             : this.ctx.body.nonce,
+      data              : this.ctx.body.Encrypt,
+    };
+
+    console.log("==== get MSG ====");
+
+    console.dir(params);
+
+    this.ctx.body  = "ok";
+  }
 }
 
 module.exports = WechatController;
