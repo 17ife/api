@@ -33,6 +33,8 @@ class WechatController extends Controller {
 
     console.log(this.ctx.request.body);
 
+    console.log(this.ctx.request);
+
     this.ctx.body  = "ok";
   }
 }
