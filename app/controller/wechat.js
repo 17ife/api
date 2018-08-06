@@ -21,10 +21,10 @@ class WechatController extends Controller {
 
   async getMsg(){
     const params  = {
-      msg_signature     : this.ctx.body.msg_signature,
-      timestamp         : this.ctx.body.timestamp,
-      nonce             : this.ctx.body.nonce,
-      data              : this.ctx.body.Encrypt,
+      msg_signature     : this.ctx.request.body.msg_signature,
+      timestamp         : this.ctx.request.body.timestamp,
+      nonce             : this.ctx.request.body.nonce,
+      data              : this.ctx.request.body.Encrypt,
     };
 
     console.log("==== get MSG ====");
