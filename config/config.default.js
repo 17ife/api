@@ -54,7 +54,7 @@ module.exports = appInfo => {
       '.zip','.gz', '.tgz', '.gzip',
       // video
       '.mp3','.mp4','.avi',
-    ],
+    ]
   };
 
   return config;

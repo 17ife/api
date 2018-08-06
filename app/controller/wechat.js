@@ -31,9 +31,9 @@ class WechatController extends Controller {
 
     console.dir(params);
 
-    console.log(this.ctx.request.body);
+    const stream = await ctx.getFileStream();
 
-    console.log(this.ctx.request);
+    console.log(stream);
 
     this.ctx.body  = "ok";
   }
