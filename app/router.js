@@ -13,7 +13,7 @@ module.exports = app => {
   router.get('/signature', controller.wechat.signature);
   router.post('/signature', controller.wechat.getMsg);
 
-  router.all("/chat",controller.cowechat);
+  router.all("/chat",controller.chat);
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
 
