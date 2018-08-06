@@ -3,10 +3,10 @@
 const wechat = require('co-wechat');
 
 module.exports = app => {
-  class HomeController extends app.Controller {}
+  class cowechatController extends app.Controller {}
 
   // 因为 Egg 需要用类的形式来组织，而 wechat 是通过 middleware 方法来生成中间件
-  HomeController.prototype.wechat = wechat({
+  cowechatController.prototype.wechat = wechat({
     token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
     appid: 'wweeb673ca4f4dda8c',
     encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
@@ -16,5 +16,5 @@ module.exports = app => {
     ctx.body = "ok"
   });
 
-  return HomeController;
+  return cowechatController;
 };
