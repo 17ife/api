@@ -7,7 +7,9 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1521705392823_8554';
 
   // add your config here
-  config.middleware = [];
+  config.middleware = [
+    "wechat"
+  ];
 
   config.mysql = {
     // 单数据库信息配置
