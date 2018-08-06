@@ -5,14 +5,17 @@
  */
 
 
-const wechat = app.middlewares.wechat({
-  token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
-  appid: 'wweeb673ca4f4dda8c',
-  encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
-});
+
 
 module.exports = app => {
   const { router, controller } = app;
+
+  const wechat = app.middlewares.wechat({
+    token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
+    appid: 'wweeb673ca4f4dda8c',
+    encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
+  });
+
   router.get('/', controller.home.index);
   router.get('/testGet',controller.home.testGet);
   router.get('/tags',controller.tags.findAll);
