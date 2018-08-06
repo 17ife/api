@@ -9,7 +9,7 @@ module.exports = appInfo => {
   // add your config here
   config.middleware = [
     // 'chat'
-    'xmlparser'
+    'xmlparser.js'
   ];
 
   config.xmlparser = {};
@@ -48,7 +48,7 @@ module.exports = appInfo => {
     credentials: true
   };
   // 文件上传大小
-  exports.multipart = {
+  config.multipart = {
     fileSize: '50mb',
     whitelist: [
       // image
