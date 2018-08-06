@@ -9,8 +9,10 @@ module.exports = appInfo => {
   // add your config here
   config.middleware = [
     // 'chat'
-    // 'xmlparser'
+    'xmlparser'
   ];
+
+  config.xmlparser = {};
 
   config.mysql = {
     // 单数据库信息配置
