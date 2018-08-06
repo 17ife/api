@@ -3,9 +3,6 @@ const ToolService  = require('../base/tools');
 const Tool         = new ToolService();
 
 class WechatController extends Controller {
-  async customService(){
-    this.ctx.body = await this.ctx.service.wechat.customService();
-  }
 
   async signature(){
     const params  = {
