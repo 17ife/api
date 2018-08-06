@@ -7,3 +7,4 @@ module.exports = (options, app) => {
     ctx.body = "OK";
   });
 };
+
