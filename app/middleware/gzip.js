@@ -1,12 +1,13 @@
 // const bodyParser = require('body-parser');
 
-// async function xmlparser(ctx, next) {
-//   ctx.app.use(bodyParser.urlencoded({
-//     extended:true
-//   }));
-//   await next();
+// module.exports = options => {
+//   async function xmlparser(ctx, next) {
+//     ctx.app.use(bodyParser.urlencoded({
+//       extended:true
+//     }));
+//     await next();
+//   }
 // }
-
 const isJSON = require('koa-is-json');
 const zlib = require('zlib');
 
