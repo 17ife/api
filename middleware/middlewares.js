@@ -1,4 +1,3 @@
-
 module.exports = () => {
   return async function xmlparser(ctx, next) {
     const bodyParser = require('body-parser');
