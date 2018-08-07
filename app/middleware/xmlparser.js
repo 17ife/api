@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 
 module.exports = options => {
-  async function xmlparser(ctx, next) {
+  return async function (ctx, next) {
     ctx.app.use(bodyParser.urlencoded({
       extended:true
     }));
