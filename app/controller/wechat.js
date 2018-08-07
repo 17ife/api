@@ -39,11 +39,13 @@ class WechatController extends Controller {
         console.log(json);//这里的json便是xml转为json的内容
         params.data   = json.xml.Encrypt;
         let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data ;
-        Tool.syncExeScript(cmdStr , function(stdout,stderr){
-          console.log(stdout);
-          console.log(stderr);
-          that.ctx.body = 'success';
-        })        
+        console.log(cmdStr);
+        // Tool.syncExeScript(cmdStr , function(stdout,stderr){
+        //   console.log(stdout);
+        //   console.log(stderr);
+        //   that.ctx.body = 'success';
+        // }) 
+        that.ctx.body = 'success';       
       });
     });
   }
