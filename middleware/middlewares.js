@@ -1,10 +1,8 @@
-export default function(){
-  return async function xmlparser(ctx, next) {
-    const bodyParser = require('body-parser');
-    ctx.app.use(bodyParser.urlencoded({
-      extended:true
-    }));
-    await next();
-  }
-};
-  
+const bodyParser = require('body-parser');
+
+async function xmlparser(ctx, next) {
+  ctx.app.use(bodyParser.urlencoded({
+    extended:true
+  }));
+  await next();
+}
