@@ -7,7 +7,12 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1521705392823_8554';
 
   // add your config here
-  config.middleware = [ 'xmlparser' ];
+  config.middleware = [ 'gzip' ],
+
+  // 配置 gzip 中间件的配置
+  config.gzip = {
+    threshold: 1024, // 小于 1k 的响应体不压缩
+  },
 
   config.bodyParser = {
     enable: true,
