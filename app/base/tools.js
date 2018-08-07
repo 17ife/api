@@ -2,6 +2,7 @@
 const uuidv4 = require("uuid/v4");
 const util   = require('util');
 const exec   = util.promisify(require('child_process').exec);
+const xml2js = util.promisify(require('xml2js').parseString);
 
 class ToolService {
   
