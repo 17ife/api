@@ -6,7 +6,7 @@
 module.exports = app => {
   const { router, controller } = app;
   console.log(app.middleware);
-  const gzip = app.middleware.gzip({ threshold: 1024 });
+  // const gzip = app.middleware.gzip({ threshold: 1024 });
   // const xmlparse = app.middleware.xmlparse();
   router.get('/',gzip, controller.home.index);
   router.get('/testGet',controller.home.testGet);
