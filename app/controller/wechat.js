@@ -1,7 +1,7 @@
 const Controller   = require('egg').Controller;
 const ToolService  = require('../base/tools');
 const Tool         = new ToolService();
-// const xml2js       = require('xml2js').parseString;
+const xml2js       = require('xml2js').parseString;
 // const util         = require('util');
 // const xml2js       = util.promisify(require('xml2js').parseString);
 
@@ -35,21 +35,16 @@ class WechatController extends Controller {
     });
     let that = this;
     this.ctx.req.on('end',function(){
-      // xml2js(data,{explicitArray:false}, function (err, json) {
-      //   console.log(json);//这里的json便是xml转为json的内容
-      //   params.data   = json.xml.Encrypt;
-      //   let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data ;
-      //   let result    = await Tool.exescript(cmdStr);
-      //   console.log(result);
-      //   this.ctx.body = result.stdout;
-      //   that.ctx.body = 'success';
-      // });
-      let json = await Tool.xml2json(data);
-      console.log(json);
-      // let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + json.xml.Encrypt ;
-      // let result    = await Tool.exescript(cmdStr);
-      // conole.log(result);
-      that.ctx.body = 'success';
+      xml2js(data,{explicitArray:false}, function (err, json) {
+        console.log(json);//这里的json便是xml转为json的内容
+        params.data   = json.xml.Encrypt;
+        let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data ;
+        tool.syncExeScript(cmdStr , function(stdout,stderr){
+          console.log(stdout);
+          console.log(stderr);
+          that.ctx.body = 'success';
+        })        
+      });
     });
   }
 }
