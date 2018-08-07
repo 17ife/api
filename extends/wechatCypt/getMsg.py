@@ -15,7 +15,7 @@ if __name__ == "__main__":
     
     ret,sMsg            = wxcpt.DecryptMsg( sReqData, sReqMsgSig, sReqTimeStamp, sReqNonce)
     if(ret!=0):
-        sys.stderr.write(ret)
+        sys.stderr.write(str(ret))
         sys.exit(1)
 
     sys.stdout.write(str(sEchoStr))
