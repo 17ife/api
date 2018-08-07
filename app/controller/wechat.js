@@ -44,9 +44,9 @@ class WechatController extends Controller {
       //   this.ctx.body = result.stdout;
       //   that.ctx.body = 'success';
       // });
-      let json = Tool.xml2json(data);
+      let json = await Tool.xml2json(data);
       console.log(json);
-      let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + json.xml.Encrypt ;
+      // let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + json.xml.Encrypt ;
       // let result    = await Tool.exescript(cmdStr);
       // conole.log(result);
       that.ctx.body = 'success';
