@@ -25,6 +25,8 @@ class WechatController extends Controller {
       data              : this.ctx.request.body.Encrypt,
     };
 
+    console.log(params);
+
     let data = '';
     let json = {};
     this.ctx.req.setEncoding('utf8');

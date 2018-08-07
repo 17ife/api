@@ -11,9 +11,9 @@ module.exports = app => {
   router.get('/testGet',controller.home.testGet);
   router.get('/tags',controller.tags.findAll);
   router.get('/commodities',controller.commodity.find);
-  router.get('/wechat',controller.wechat.customService);
+  // router.get('/wechat',controller.wechat.customService);
   router.get('/signature', controller.wechat.signature);
-  router.post('/signature',xmlparse, controller.wechat.getMsg);
+  router.post('/signature', xmlparse, controller.wechat.getMsg);
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
 
