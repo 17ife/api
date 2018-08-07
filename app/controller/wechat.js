@@ -37,14 +37,14 @@ class WechatController extends Controller {
     this.ctx.req.on('end',function(){
       xml2js(data,{explicitArray:false}, function (err, json) {
         console.log(json);//这里的json便是xml转为json的内容
-        params.data   = json.xml.Encrypt;
+        params.data   = json.xml;
         let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data ;
         console.log(cmdStr);
-        // Tool.syncExeScript(cmdStr , function(stdout,stderr){
-        //   console.log(stdout);
-        //   console.log(stderr);
-        //   that.ctx.body = 'success';
-        // }) 
+        Tool.syncExeScript(cmdStr , function(stdout,stderr){
+          console.log(stdout);
+          console.log(stderr);
+          that.ctx.body = 'success';
+        }) 
         that.ctx.body = 'success';       
       });
     });
