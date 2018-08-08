@@ -22,5 +22,5 @@ if __name__ == "__main__":
         sys.stderr.write(str(ret))
         sys.exit(1)
 
-    sys.stdout.write(str(sEchoStr))
+    sys.stdout.write(str(sMsg))
     sys.exit(0)
