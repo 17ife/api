@@ -14,7 +14,20 @@ module.exports = app => {
   // router.get('/wechat',controller.wechat.customService);
   router.get('/signature', controller.wechat.signature);
   router.post('/signature', xmlparse, controller.wechat.getMsg);
-  router.all('/wechat', controller.cowechat.wechat);
+
+  const wechat = app.middlewares.wechat({
+    token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
+    appid: 'wweeb673ca4f4dda8c',
+    encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
+  }).middleware(async (message, ctx) => {
+    console.log(1111);
+    console.log(message);
+    console.log(ctx);
+    return { type: "text", content: 'Hello world!' };
+  });
+  
+  router.get('/wechat', wechat);
+  router.post('/wechat', wechat);
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
 
