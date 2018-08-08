@@ -14,6 +14,7 @@ module.exports = app => {
   // router.get('/wechat',controller.wechat.customService);
   router.get('/signature', controller.wechat.signature);
   router.post('/signature', xmlparse, controller.wechat.getMsg);
+  router.all('/wechat',controller.cowechat)
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
 

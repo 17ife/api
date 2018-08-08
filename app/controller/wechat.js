@@ -44,8 +44,7 @@ class WechatController extends Controller {
           console.log(stdout);
           console.log(stderr);
           that.ctx.body = 'success';
-        }) 
-        that.ctx.body = 'success';       
+        })  
       });
     });
   }
