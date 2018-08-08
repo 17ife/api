@@ -5,7 +5,7 @@ const wechat       = require('co-wechat');
 
 class cowechatController extends Controller {}
 
-HomeController.prototype.wechat = wechat({
+cowechatController.prototype.wechat = wechat({
   token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
   appid: '1000003',
   encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
