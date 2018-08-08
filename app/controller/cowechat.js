@@ -7,9 +7,11 @@ class cowechatController extends Controller {}
 
 cowechatController.prototype.wechat = wechat({
   token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
-  appid: '1000003',
+  appid: 'wweeb673ca4f4dda8c',
   encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
 }).middleware(async (message, ctx) => {
+  console.log(message);
+  console.log(ctx);
   return { type: "text", content: 'Hello world!' };
 });
   
