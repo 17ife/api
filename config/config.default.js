@@ -7,7 +7,7 @@ module.exports = appInfo => {
   config.keys = appInfo.name + '_1521705392823_8554';
 
   // add your config here
-  config.middleware = [ 'xmlparse' , 'wechat' ],
+  config.middleware = [ 'xmlparse' , 'cowechat' ],
 
   config.bodyParser = {
     enable: true,

@@ -1,7 +1,7 @@
 
 const wechat = require('co-wechat');
  
-module.exports = (options, app) => {
+module.exports =  options => {
   return wechat(options).middleware(async (message, ctx) => {
     // TODO
     console.log(1111);
