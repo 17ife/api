@@ -10,6 +10,7 @@ cowechatController.prototype.wechat = wechat({
   appid: 'wweeb673ca4f4dda8c',
   encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
 }).middleware(async (message, ctx) => {
+  console.log(1111);
   console.log(message);
   console.log(ctx);
   return { type: "text", content: 'Hello world!' };
