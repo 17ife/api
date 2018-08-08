@@ -16,9 +16,9 @@ module.exports = app => {
   router.post('/signature', xmlparse, controller.wechat.getMsg);
 
   const wechat = app.middlewares.wechat({
-    token: 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
-    appid: 'wweeb673ca4f4dda8c',
-    encodingAESKey: 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
+    token           : 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
+    appid           : 'wweeb673ca4f4dda8c',
+    encodingAESKey  : 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
   });
 
   router.get('/wechat', wechat);
