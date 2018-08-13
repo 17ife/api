@@ -39,8 +39,7 @@ class WechatController extends Controller {
 
     this.ctx.req.on('end',function(){
       Tool.xml2json(data).then((err,json)=>{
-        let wxXmlData         = json;
-        params.data           = wxXmlData.xml;
+        params.data           = json.xml;
         let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
         //解密后的对象
         syncExeScript(cmdStr , function(stdout,stderr){
