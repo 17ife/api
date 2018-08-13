@@ -26,8 +26,6 @@ class WechatController extends Controller {
       nonce             : this.ctx.queries.nonce,
     };
 
-    console.log(params);
-
     let data = '';
     let that = this;
 
@@ -40,6 +38,7 @@ class WechatController extends Controller {
     this.ctx.req.on('end',function(){
       Tool.xml2json(data).then((err,json)=>{
         params.data           = json.xml;
+        console.log(params);
         let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
         //解密后的对象
         syncExeScript(cmdStr , function(stdout,stderr){
