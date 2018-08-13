@@ -101,7 +101,7 @@ class WechatController extends Controller {
             reCmdStr    += " " + cmdParams.sMsgId;
             reCmdStr    += " " + cmdParams.sAgentID;
       
-            syncExeScript(reCmdStr , function(reStdout,reStderr){
+            Tool.syncExeScript(reCmdStr , function(reStdout,reStderr){
               console.log(reStdout);
               console.log(reStderr);
               that.ctx.body         = reStdout;
