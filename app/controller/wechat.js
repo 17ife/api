@@ -36,27 +36,63 @@ class WechatController extends Controller {
     });
 
     this.ctx.req.on('end',function(){
-      Tool.xml2json(data).then((json,err)=>{
-        params.data           = json.xml;
-        console.log(params);
-        let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
-        //解密后的对象
-        syncExeScript(cmdStr , function(stdout,stderr){
-          console.log(wxData)
-          Tool.xml2json(stdout).then((json2,err)=>{
-            let wxData  = json2;
+      // Tool.xml2json(data).then((json,err)=>{
+      //   params.data           = json.xml;
+      //   console.log(params);
+      //   let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
+      //   //解密后的对象
+      //   syncExeScript(cmdStr , function(stdout,stderr){
+      //     console.log(wxData)
+      //     Tool.xml2json(stdout).then((json2,err)=>{
+      //       let wxData  = json2;
+      //       let cmdParams  = {
+      //         sToUserName   : wxData.FromUserName,
+      //         sFromUserName : "wweeb673ca4f4dda8c",
+      //         sCreateTime   : new Date(),
+      //         sMsgType      : wxData.MsgType,
+      //         sContent      : "replay " + wxData.Content,
+      //         sMsgId        : wxData.MsgId,
+      //         sAgentID      : params.data.AgentID
+      //       }
+            
+      //       let reCmdStr = "python /home/api/extends/wechatCypt/sendMsg.py";
+
+      //       reCmdStr    += " " + cmdParams.sToUserName;
+      //       reCmdStr    += " " + cmdParams.sFromUserName;
+      //       reCmdStr    += " " + cmdParams.sCreateTime;
+      //       reCmdStr    += " " + cmdParams.sMsgType;
+      //       reCmdStr    += " " + cmdParams.sContent;
+      //       reCmdStr    += " " + cmdParams.sMsgId;
+      //       reCmdStr    += " " + cmdParams.sAgentID;
+
+      //       syncExeScript(reCmdStr , function(reStdout,reStderr){
+      //         console.log(reStdout);
+      //         console.log(reStderr);
+      //         that.ctx.body         = "";
+      //       });
+
+      //     })  
+      //   });
+      // });
+      xml2js(data,{explicitArray:false}, function (err, json) {
+        console.log(json);//这里的json便是xml转为json的内容
+        params.data   = json.xml;
+        let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
+        Tool.syncExeScript(cmdStr , function(stdout,stderr){
+          xml2js(stdout , { explicitArray:false } , function(err,json2){
+      
             let cmdParams  = {
-              sToUserName   : wxData.FromUserName,
+              sToUserName   : json2.data.FromUserName,
               sFromUserName : "wweeb673ca4f4dda8c",
               sCreateTime   : new Date(),
-              sMsgType      : wxData.MsgType,
-              sContent      : "replay " + wxData.Content,
-              sMsgId        : wxData.MsgId,
+              sMsgType      : json2.data.MsgType,
+              sContent      : "replay " + json2.data.Content,
+              sMsgId        : json2.data.MsgId,
               sAgentID      : params.data.AgentID
             }
-            
+      
             let reCmdStr = "python /home/api/extends/wechatCypt/sendMsg.py";
-
+      
             reCmdStr    += " " + cmdParams.sToUserName;
             reCmdStr    += " " + cmdParams.sFromUserName;
             reCmdStr    += " " + cmdParams.sCreateTime;
@@ -64,15 +100,15 @@ class WechatController extends Controller {
             reCmdStr    += " " + cmdParams.sContent;
             reCmdStr    += " " + cmdParams.sMsgId;
             reCmdStr    += " " + cmdParams.sAgentID;
-
+      
             syncExeScript(reCmdStr , function(reStdout,reStderr){
               console.log(reStdout);
               console.log(reStderr);
-              that.ctx.body         = "";
+              that.ctx.body         = reStdout;
             });
-
-          })  
-        });
+      
+          })
+        })  
       });
      
     });
@@ -82,25 +118,6 @@ class WechatController extends Controller {
 
 module.exports = WechatController;
 
-// xml2js(data,{explicitArray:false}, function (err, json) {
-//   console.log(json);//这里的json便是xml转为json的内容
-//   params.data   = json.xml;
-//   let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
-//   console.log(cmdStr);
-//   Tool.syncExeScript(cmdStr , function(stdout,stderr){
-//     console.log(stdout);
-//     console.log(stderr);
-//     const userInfo = await this.ctx.service.wechat.answerUser({
-      // sToUserName   : "",
-      // sFromUserName : "wweeb673ca4f4dda8c",
-      // sCreateTime   : "",
-      // sMsgType      : "",
-      // sContent      : "",
-      // sMsgId        : "",
-      // sAgentID      : params.data.AgentID
-//     });
-//     that.ctx.body = "";
-//   })  
-// });
+
 
 
