@@ -36,15 +36,18 @@ class WechatController extends Controller {
     this.ctx.req.on('data',function(chunk){
       data += chunk;
     });
-    
+
     this.ctx.req.on('end',function(){
-      let wxXmlData         = await Tool.xml2json(data);
-      params.data           = wxXmlData.xml;
-      let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
-      //解密后的对象
-      let wxData            = await Tool.exescript(cmdStr);
-      console.log(wxData)
-      that.ctx.body         = "";
+      Tool.xml2json(data).then((err,json)=>{
+        let wxXmlData         = json;
+        params.data           = wxXmlData.xml;
+        let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
+        //解密后的对象
+        let wxData            = await Tool.exescript(cmdStr);
+        console.log(wxData)
+        that.ctx.body         = "";
+      });
+     
     });
 
   }
