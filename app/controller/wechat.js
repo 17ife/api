@@ -82,13 +82,13 @@ class WechatController extends Controller {
           xml2js(stdout , { explicitArray:false } , function(err,json2){
       
             let cmdParams  = {
-              sToUserName   : json2.data.FromUserName,
+              sToUserName   : json2.FromUserName,
               sFromUserName : "wweeb673ca4f4dda8c",
               sCreateTime   : new Date(),
-              sMsgType      : json2.data.MsgType,
-              sContent      : "replay " + json2.data.Content,
-              sMsgId        : json2.data.MsgId,
-              sAgentID      : params.data.AgentID
+              sMsgType      : json2.MsgType,
+              sContent      : "replay " + json2.Content,
+              sMsgId        : json2.MsgId,
+              sAgentID      : params.AgentID
             }
       
             let reCmdStr = "python /home/api/extends/wechatCypt/sendMsg.py";
