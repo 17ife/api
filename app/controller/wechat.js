@@ -43,9 +43,39 @@ class WechatController extends Controller {
         params.data           = wxXmlData.xml;
         let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
         //解密后的对象
-        let wxData            = await Tool.exescript(cmdStr);
-        console.log(wxData)
-        that.ctx.body         = "";
+        syncExeScript(cmdStr , function(stdout,stderr){
+          console.log(wxData)
+          Tool.xml2json(stdout).then((err,json)=>{
+            let wxData  = json;
+
+            let cmdParams  = {
+              sToUserName   : wxData.FromUserName,
+              sFromUserName : "wweeb673ca4f4dda8c",
+              sCreateTime   : new Date(),
+              sMsgType      : wxData.MsgType,
+              sContent      : "replay " + wxData.Content,
+              sMsgId        : wxData.MsgId,
+              sAgentID      : params.data.AgentID
+            }
+            
+            let reCmdStr = "python /home/api/extends/wechatCypt/sendMsg.py";
+
+            reCmdStr    += " " + cmdParams.sToUserName;
+            reCmdStr    += " " + cmdParams.sFromUserName;
+            reCmdStr    += " " + cmdParams.sCreateTime;
+            reCmdStr    += " " + cmdParams.sMsgType;
+            reCmdStr    += " " + cmdParams.sContent;
+            reCmdStr    += " " + cmdParams.sMsgId;
+            reCmdStr    += " " + cmdParams.sAgentID;
+
+            syncExeScript(reCmdStr , function(reStdout,reStderr){
+              console.log(reStdout);
+              console.log(reStderr);
+              that.ctx.body         = "";
+            });
+
+          })  
+        });
       });
      
     });
@@ -64,13 +94,13 @@ module.exports = WechatController;
 //     console.log(stdout);
 //     console.log(stderr);
 //     const userInfo = await this.ctx.service.wechat.answerUser({
-//       sToUserName   : "",
-//       sFromUserName : "wweeb673ca4f4dda8c",
-//       sCreateTime   : "",
-//       sMsgType      : "",
-//       sContent      : "",
-//       sMsgId        : "",
-//       sAgentID      : params.data.AgentID
+      // sToUserName   : "",
+      // sFromUserName : "wweeb673ca4f4dda8c",
+      // sCreateTime   : "",
+      // sMsgType      : "",
+      // sContent      : "",
+      // sMsgId        : "",
+      // sAgentID      : params.data.AgentID
 //     });
 //     that.ctx.body = "";
 //   })  

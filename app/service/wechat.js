@@ -17,7 +17,7 @@ class WechatService extends Service {
     cmdStr       += " " + params.sAgentID;
     let result    = await Tool.exescript(cmdStr);
 
-    return result;
+    return result
   }
 }
 
