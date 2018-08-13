@@ -29,27 +29,48 @@ class WechatController extends Controller {
     console.log(params);
 
     let data = '';
+    let that = this;
+
     this.ctx.req.setEncoding('utf8');
+
     this.ctx.req.on('data',function(chunk){
       data += chunk;
     });
-    let that = this;
+    
     this.ctx.req.on('end',function(){
-      xml2js(data,{explicitArray:false}, function (err, json) {
-        console.log(json);//这里的json便是xml转为json的内容
-        params.data   = json.xml;
-        let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
-        console.log(cmdStr);
-        Tool.syncExeScript(cmdStr , function(stdout,stderr){
-          console.log(stdout);
-          console.log(stderr);
-          that.ctx.body = 'success';
-        })  
-      });
+      let wxXmlData         = await Tool.xml2json(data);
+      params.data           = wxXmlData.xml;
+      let cmdStr            = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
+      //解密后的对象
+      let wxData            = await Tool.exescript(cmdStr);
+      console.log(wxData)
+      that.ctx.body         = "";
     });
+
   }
 }
 
 module.exports = WechatController;
+
+// xml2js(data,{explicitArray:false}, function (err, json) {
+//   console.log(json);//这里的json便是xml转为json的内容
+//   params.data   = json.xml;
+//   let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
+//   console.log(cmdStr);
+//   Tool.syncExeScript(cmdStr , function(stdout,stderr){
+//     console.log(stdout);
+//     console.log(stderr);
+//     const userInfo = await this.ctx.service.wechat.answerUser({
+//       sToUserName   : "",
+//       sFromUserName : "wweeb673ca4f4dda8c",
+//       sCreateTime   : "",
+//       sMsgType      : "",
+//       sContent      : "",
+//       sMsgId        : "",
+//       sAgentID      : params.data.AgentID
+//     });
+//     that.ctx.body = "";
+//   })  
+// });
 
 

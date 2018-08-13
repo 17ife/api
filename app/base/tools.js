@@ -29,10 +29,10 @@ class ToolService {
     return  { "stdout" :  stdout , "stderr" : stderr }
   }
 
-  // async xml2json(data) {
-  //   const { err, json } = await xml2js(data , { explicitArray : false });
-  //   return  { "error" :  err , "json" : json };
-  // }
+  async xml2json(str) {
+    const { err , json } = await xml2js(str,{explicitArray:false});
+    return { "err" : err , "data" : json }
+  }
 
   doLog() {}
 

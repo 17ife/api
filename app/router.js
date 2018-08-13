@@ -5,8 +5,9 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  console.log(app.middleware);
   const xmlparse = app.middleware.xmlparse();
+  console.log(app.middleware);
+
   router.get('/', controller.home.index);
   // router.get('/testGet',controller.home.testGet);
   // router.get('/tags',controller.tags.findAll);
