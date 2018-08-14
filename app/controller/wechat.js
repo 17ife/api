@@ -24,6 +24,8 @@ class WechatController extends Controller {
   }
 
   async getMsg(){
+    console.log("==========get request===========")
+
     const params  = {
       msg_signature     : this.ctx.queries.msg_signature,
       timestamp         : this.ctx.queries.timestamp,
@@ -85,9 +87,11 @@ class WechatController extends Controller {
                 console.log(restderr)
               };
 
+              console.log(restdout);
+
               let result = Tool.jsonToXml(restdout);
 
-              console.log(result);
+              // console.log(result);
 
               // that.ctx.res.setHeader('Content-Type', 'application/xml')
               that.ctx.res.end(result)
