@@ -53,13 +53,15 @@ class WechatController extends Controller {
             let cmdParams  = {
               sToUserName   : json2.FromUserName,
               sFromUserName : "wweeb673ca4f4dda8c",
-              sCreateTime   : new Date(),
+              sCreateTime   : json2.CreateTime,
               sMsgType      : json2.MsgType,
               sContent      : "replay " + json2.Content,
               sMsgId        : json2.MsgId,
               sAgentID      : params.AgentID
             }
-      
+            
+            console.log(4);
+
             let reCmdStr = "python /home/api/extends/wechatCypt/sendMsg.py";
       
             reCmdStr    += " " + cmdParams.sToUserName;
@@ -70,6 +72,7 @@ class WechatController extends Controller {
             reCmdStr    += " " + cmdParams.sMsgId;
             reCmdStr    += " " + cmdParams.sAgentID;
       
+            console.log(5);
             Tool.syncExeScript(reCmdStr , function(restdout,restderr){
               if(restderr){
                 console.log(restderr)
