@@ -33,6 +33,11 @@ class ToolService {
     return { "err" : err , "data" : json }
   }
 
+  jsonToXml(obj){
+    const builder = new xml2js.Builder()
+    return builder.buildObject(obj)
+  }
+
   doLog() {}
 
 }

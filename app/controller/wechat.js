@@ -2,7 +2,6 @@ const Controller   = require('egg').Controller;
 const ToolService  = require('../base/tools');
 const Tool         = new ToolService();
 const xml2js       = require('xml2js').parseString;
-const xmltool      = require('../base/xmltools');
 // const util         = require('util');
 // const xml2js       = util.promisify(require('xml2js').parseString);
 
@@ -86,7 +85,7 @@ class WechatController extends Controller {
                 console.log(restderr)
               };
 
-              let result = await xmltool.jsonToXml(restdout);
+              let result = Tool.jsonToXml(restdout);
 
               ctx.res.setHeader('Content-Type', 'application/xml')
               ctx.res.end(result)
