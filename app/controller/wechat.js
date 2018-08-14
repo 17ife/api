@@ -86,7 +86,7 @@ class WechatController extends Controller {
                 console.log(restderr)
               };
 
-              let result = json2xml(restdout);
+              let result = json2xml.buildObject(restdout);
 
               ctx.res.setHeader('Content-Type', 'application/xml')
               ctx.res.end(result)
