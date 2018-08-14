@@ -15,6 +15,8 @@ if __name__ == "__main__":
     sContent            = sys.argv[5]
     sMsgId              = sys.argv[6]
     sAgentID            = sys.argv[7]
+    sReqNonce           = sys.argv[8]
+    sReqTimeStamp       = sys.argv[9]
 
     sReqData            = "<xml>\n<ToUserName>" + sToUserName     +"</ToUserName>\n"
     sReqData           += "<FromUserName>"      + sFromUserName   + "</FromUserName>\n"
@@ -24,7 +26,7 @@ if __name__ == "__main__":
     sReqData           += "<MsgId>"             + sMsgId          + "</MsgId>\n"
     sReqData           += "<AgentID>"           + sAgentID        + "</AgentID></xml>"
     
-    ret,sEncryptMsg=wxcpt.EncryptMsg(sRespData, sReqNonce, sReqTimeStamp)
+    ret,sEncryptMsg=wxcpt.EncryptMsg(sReqData, sReqNonce, sReqTimeStamp)
     if(ret!=0):
         sys.stderr.write(str(ret))
         sys.exit(1)
