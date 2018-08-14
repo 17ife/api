@@ -15,6 +15,7 @@ module.exports = app => {
   // router.get('/wechat',controller.wechat.customService);
   router.get('/signature', controller.wechat.signature);
   router.post('/signature', xmlparse, controller.wechat.getMsg);
+  // router.post('/signature', xmlparse, controller.wechat.message);
 
   // const wechat = app.middlewares.wechat({
   //   token           : 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
