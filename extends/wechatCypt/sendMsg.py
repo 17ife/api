@@ -31,5 +31,5 @@ if __name__ == "__main__":
         sys.stderr.write(str(ret))
         sys.exit(1)
 
-    sys.stdout.write(str(sMsg))
+    sys.stdout.write(str(sEncryptMsg))
     sys.exit(0)
