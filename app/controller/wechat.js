@@ -42,17 +42,17 @@ class WechatController extends Controller {
     this.ctx.req.on('end',function(){
 
       xml2js(data,{ explicitArray:false }, function (err, json) {
-        console.log(1);//这里的json便是xml转为json的内容
+        // console.log(1);//这里的json便是xml转为json的内容
         params.data   = json.xml;
         let cmdStr    = "python /home/api/extends/wechatCypt/getMsg.py " + params.msg_signature + " " + params.timestamp + " " + params.nonce + " " + params.data.ToUserName + " " + params.data.Encrypt + " " + params.data.AgentID;
         
         Tool.syncExeScript(cmdStr , function(stdout,stderr){
 
-          console.log(2);
+          // console.log(2);
 
           xml2js(stdout , { explicitArray:false } , function(err,json2){
 
-            console.log(3);
+            // console.log(3);
       
             let cmdParams  = {
               sToUserName   : json2.FromUserName,
@@ -64,7 +64,7 @@ class WechatController extends Controller {
               sAgentID      : params.AgentID
             }
             
-            console.log(4);
+            // console.log(4);
 
             let reCmdStr = "python /home/api/extends/wechatCypt/sendMsg.py";
       
@@ -78,7 +78,7 @@ class WechatController extends Controller {
             reCmdStr    += " " + params.nonce;
             reCmdStr    += " " + params.timestamp;
       
-            console.log(5);
+            // console.log(5);
 
             Tool.syncExeScript(reCmdStr , function(restdout,restderr){
               if(restderr){
@@ -86,6 +86,8 @@ class WechatController extends Controller {
               };
 
               let result = Tool.jsonToXml(restdout);
+
+              console.log(result);
 
               // that.ctx.res.setHeader('Content-Type', 'application/xml')
               that.ctx.res.end(result)
