@@ -71,7 +71,9 @@ class WechatController extends Controller {
             reCmdStr    += " " + cmdParams.sAgentID;
       
             Tool.syncExeScript(reCmdStr , function(restdout,restderr){
-              if(restderr) console.log(restderr);
+              if(restderr){
+                console.log(restderr)
+              };
 
               that.ctx.body = restdout;
             });
