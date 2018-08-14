@@ -34,7 +34,8 @@ class ToolService {
   }
 
   jsonToXml(obj){
-    const builder = new xml2js.Builder()
+    const lib     = require('xml2js')
+    const builder = new lib.Builder()
     return builder.buildObject(obj)
   }
 
