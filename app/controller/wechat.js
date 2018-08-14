@@ -70,8 +70,10 @@ class WechatController extends Controller {
             reCmdStr    += " " + cmdParams.sMsgId;
             reCmdStr    += " " + cmdParams.sAgentID;
       
-            Tool.syncExeScript(reCmdStr , function(reStdout,reStderr){
-              that.ctx.body         = reStdout;
+            Tool.syncExeScript(reCmdStr , function(restdout,restderr){
+              if(restderr) console.log(restderr);
+
+              that.ctx.body = restdout;
             });
       
           });
@@ -81,7 +83,6 @@ class WechatController extends Controller {
       });
      
     });
-
   }
 }
 
