@@ -5,11 +5,26 @@
  */
 module.exports = app => {
   const { router, controller } = app;
-  router.get('/', controller.home.index);
-  router.get('/testGet',controller.home.testGet);
-  router.get('/tags',controller.tags.findAll);
-  router.get('/commodities',controller.commodity.find);
+  const xmlparse = app.middleware.xmlparse();
+  console.log(app.middleware);
 
+  router.get('/', controller.home.index);
+  // router.get('/testGet',controller.home.testGet);
+  // router.get('/tags',controller.tags.findAll);
+  // router.get('/commodities',controller.commodity.find);
+  // router.get('/wechat',controller.wechat.customService);
+  router.get('/signature', controller.wechat.signature);
+  router.post('/signature', xmlparse, controller.wechat.getMsg);
+  // router.post('/signature', xmlparse, controller.wechat.message);
+
+  // const wechat = app.middlewares.wechat({
+  //   token           : 'wYA10XSUEzL1EQmdCyXFd9hzGNsM',
+  //   appid           : 'wweeb673ca4f4dda8c',
+  //   encodingAESKey  : 'iuSFA11uMgA86sTS2ZiadHxMtQjvpk6BzUSsnSQ9NiY'
+  // });
+
+  // router.get('/wechat', wechat);
+  // router.post('/wechat', wechat);
   // router.post('/scrapy/dealnews/add',app.controller.scrapy.create);
   // router.post('/csrf',app.controller.scrapy.crsf);
 
